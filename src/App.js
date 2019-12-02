@@ -12,29 +12,32 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 
+		console.log();
+
 		this.state = {
-			todos: [
-				// {
-				// task: "",
-				// id: 0,
-				// completed: false
-				// }
-				{
-					task: "Organize Garage",
-					id: 1528817077286,
-					completed: false
-				},
-				{
-					task: "Bake Cookies",
-					id: 1528817084358,
-					completed: false
-				},
-				{
-					task: "Go to Mars",
-					id: Date.now(),
-					completed: false
-				}
-			]
+			// todos: [
+			// 	// {
+			// 	// task: "",
+			// 	// id: 0,
+			// 	// completed: false
+			// 	// }
+			// 	{
+			// 		task: "Organize Garage",
+			// 		id: 1528817077286,
+			// 		completed: false
+			// 	},
+			// 	{
+			// 		task: "Bake Cookies",
+			// 		id: 1528817084358,
+			// 		completed: false
+			// 	},
+			// 	{
+			// 		task: "Go to Mars",
+			// 		id: Date.now(),
+			// 		completed: false
+			// 	}
+			// ]
+			todos: JSON.parse(window.localStorage.getItem("todos")) || []
 		};
 	}
 
@@ -56,9 +59,13 @@ class App extends React.Component {
 		// 		...oldState
 		// 	};
 		// });
-		this.setState(oldState => ({
-			todos: [...oldState.todos, newTask]
-		}));
+		this.setState(oldState => {
+			window.localStorage.setItem(
+				"todos",
+				JSON.stringify([...oldState.todos, newTask])
+			);
+			return { todos: [...oldState.todos, newTask] };
+		});
 	};
 
 	complete = todo => {
