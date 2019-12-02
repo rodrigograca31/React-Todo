@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
+import SearchForm from "./components/TodoComponents/SearchForm";
 import "./components/TodoComponents/Todo.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -102,6 +103,7 @@ class App extends React.Component {
 				<h2>Welcome to your Todo App!</h2>
 				<TodoList todos={this.state.todos} complete={this.complete} />
 				<TodoForm addtodo={this.addtodo} clear={this.clear} />
+				<SearchForm todos={this.state.todos} />
 			</div>
 		);
 	}
