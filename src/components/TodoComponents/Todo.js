@@ -6,7 +6,16 @@ class Todo extends React.Component {
 	}
 
 	render() {
-		return <li>{this.props.todo.task}</li>;
+		return (
+			<li
+				className={this.props.todo.completed ? "done" : ""}
+				onClick={e => {
+					this.props.complete(this.props.todo);
+				}}
+			>
+				{this.props.todo.task}
+			</li>
+		);
 	}
 }
 
